@@ -17,7 +17,6 @@ class ActorManager:
         self.cursor.execute(query, (first_name, last_name))
         self.connection.commit()
 
-
     def all(self) -> list[Actor]:
         query = f"""
         SELECT id, first_name, last_name
@@ -27,7 +26,6 @@ class ActorManager:
         rows = self.cursor.fetchall()
         return [Actor(*row) for row in rows]
 
-
     def update(self, pk: int, new_first_name: str, new_last_name: str) -> None:
         query = f"""
         UPDATE {self.table_name}
@@ -36,7 +34,6 @@ class ActorManager:
         """
         self.cursor.execute(query, (new_first_name, new_last_name, pk))
         self.connection.commit()
-
 
     def delete(self, pk: int) -> None:
         query = f"""
